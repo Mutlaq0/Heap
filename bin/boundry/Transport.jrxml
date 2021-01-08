@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfc33f81-a43d-4478-a3c3-48f91c1e3865">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[SELECT Employee.TurnNumber, SpecialRequests.fromAirport, SpecialRequests.toAirport, Sum(SpecialRequests.NumberOfTraveles) AS Total
+FROM SpecialRequests INNER JOIN (Employee INNER JOIN EmployeeRequests ON Employee.ID = EmployeeRequests.EmployeeID) ON SpecialRequests.NumberRequest = EmployeeRequests.NumberRequest
+GROUP BY Employee.TurnNumber, SpecialRequests.fromAirport, SpecialRequests.toAirport;]]>
+	</queryString>
+	<field name="TurnNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="TurnNumber"/>
+	</field>
+	<field name="fromAirport" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fromAirport"/>
+	</field>
+	<field name="toAirport" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="toAirport"/>
+	</field>
+	<field name="Total" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72">
+			<staticText>
+				<reportElement x="40" y="0" width="521" height="71" uuid="124d1913-d9c8-438a-8944-999deca6d847"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Algerian" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Transport Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="29" width="241" height="29" uuid="e413411d-4fbe-4c22-884a-67e900d17872"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="0" width="595" height="1" forecolor="#00FF33" uuid="72a75c20-b7e9-49ce-8b50-bc6cb7afea96"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="31" width="101" height="31" uuid="b4cc0165-f8a0-44e6-a899-0f53b3264e67"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Turn number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="31" width="61" height="31" uuid="fb2cf815-20b2-4a45-ab54-b352c1e17ea0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[fromAirport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="30" width="71" height="31" uuid="9361aabc-39ab-4665-8ece-d68f028e6f6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[toAirport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="30" width="91" height="31" uuid="a09ca44e-d234-4f0f-9760-4cce1e353362"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#00FF33" uuid="9150e38f-54cb-4c12-8e01-685b2799173d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="-1" width="595" height="56" forecolor="#00FF33" uuid="ac27b805-a7ab-45be-aaa9-31535cc8361a"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="FixRelativeToBottom" stretchType="ElementGroupHeight" x="20" y="6" width="101" height="25" uuid="dc8e2ad8-1710-47dd-b530-beb94bdf6ebd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TurnNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="9" width="80" height="27" uuid="243602a3-0853-4f1c-8ef3-f90480e39d22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fromAirport}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="4" width="71" height="32" uuid="ed0ed192-0d26-4a3a-a636-53ac3e3d89bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{toAirport}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="4" width="61" height="29" uuid="f48d9eec-f384-4aeb-b3d6-f645922043c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#00FF33" uuid="acdbc2a2-c5f4-47f8-8fde-957dfba666bc"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="-20" y="11" width="241" height="29" uuid="65ba5e33-3b1a-4451-aa2a-68a9c17b1683"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

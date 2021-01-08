@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ParkingStationReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8fbb35d-898f-4b17-905f-0a7c81add2fe">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="city" class="java.lang.String">
+		<parameterDescription><![CDATA[city]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT TblParkingStations.ID, TblParkingStations.City, TblParkingStations.Street, TblParkingStations.xLocation, TblParkingStations.yLocation, TblParkingStations.FreeLots
+FROM TblParkingStations
+WHERE TblParkingStations.City=$P{city}
+ORDER BY TblParkingStations.xLocation, TblParkingStations.yLocation]]>
+	</queryString>
+	<field name="ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblParkingStations"/>
+	</field>
+	<field name="Street" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Street"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblParkingStations"/>
+	</field>
+	<field name="FreeLots" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="FreeLots"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblParkingStations"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="160" y="20" width="220" height="41" uuid="183d204c-c821-4d7b-b2fd-6cd3ce304534"/>
+				<textElement>
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Parking Station Lot Report"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="280" y="0" width="40" height="35" uuid="a70a48d4-8faa-47f8-af50-99bc13a16930"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="330" y="5" width="110" height="25" uuid="8413fa7b-693d-4c4d-a532-3aaf36065225"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="131" height="31" uuid="16edec48-6415-432c-8119-cd6bfb8dab98"/>
+				<box>
+					<pen lineColor="#B2B1BD"/>
+				</box>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stations : ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="170" height="43" uuid="901f4d1c-d5ea-4087-b2c3-949f6ab01b7e"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Station ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="160" height="43" uuid="3af40256-2fde-4986-999a-267f067e8549"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Street]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="210" height="43" uuid="23e10adf-a76c-4681-abbb-667e29cca32a"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Number Of Free Lots]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="0" y="0" width="491" height="43" uuid="7b2f5708-efa2-47ec-8697-ec709522c34e"/>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="437c9131-9adf-4776-a76d-c680a0458eb4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce9b79a2-d476-426b-b57c-11eb6b143a40"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="0" width="100" height="30" uuid="c4dcf106-2fde-4db0-9e44-02df2e8f6657">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a357b73-a67b-4645-919b-9f119348d140"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Street}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="30" uuid="d3c64abf-ecc8-4b41-8eb0-94622cdec384">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d2068ce-a4a7-44d2-aa28-49142ac69a5b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FreeLots}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
